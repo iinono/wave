@@ -258,6 +258,19 @@ function Header() {
   )
 }
 
+function MobileDock() {
+  return (
+    <nav className="mobile-dock" aria-label="Mobile navigation">
+      {navItems.map(([href, label], index) => (
+        <a href={href} key={href}>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          {label}
+        </a>
+      ))}
+    </nav>
+  )
+}
+
 function ArrowIcon() {
   return (
     <svg width="18" height="9" viewBox="0 0 18 9" fill="none" aria-hidden="true">
@@ -573,6 +586,7 @@ function App() {
       <AppEffects />
       <WaveCanvas />
       <Header />
+      <MobileDock />
       <main>
         <Hero />
         <Marquee />

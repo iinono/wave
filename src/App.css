@@ -152,6 +152,10 @@ nav a:focus-visible {
   letter-spacing: 0.28em;
 }
 
+.mobile-dock {
+  display: none;
+}
+
 .nav-sep {
   width: 1px;
   height: 14px;
@@ -1002,6 +1006,18 @@ footer {
 }
 
 @media (max-width: 768px) {
+  body {
+    padding-bottom: 84px;
+  }
+
+  .cursor-glow {
+    display: none;
+  }
+
+  #waveCanvas {
+    opacity: 0.32;
+  }
+
   header {
     height: 64px;
     padding: 0 24px;
@@ -1015,8 +1031,54 @@ footer {
     gap: 18px;
   }
 
-  nav a:not(:last-child) {
+  header nav a:not(:last-child),
+  header .nav-sep {
     display: none;
+  }
+
+  .btn-enter {
+    padding: 9px 16px;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+  }
+
+  .mobile-dock {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    z-index: 1001;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    padding: 6px;
+    background: rgba(8, 8, 8, 0.84);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(18px) saturate(1.2);
+  }
+
+  .mobile-dock a {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    color: var(--t2);
+    font-size: 0.68rem;
+    letter-spacing: 0;
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .mobile-dock a:focus-visible {
+    outline-offset: -2px;
+  }
+
+  .mobile-dock a span {
+    color: var(--t3);
+    font-family: var(--font-m);
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
   }
 
   .sec,
@@ -1031,12 +1093,45 @@ footer {
   }
 
   .hero {
-    padding-top: 100px;
-    padding-bottom: 60px;
+    justify-content: flex-start;
+    min-height: auto;
+    padding-top: 112px;
+    padding-bottom: 72px;
   }
 
   .hero-badge {
+    max-width: 280px;
+    margin-bottom: 28px;
+    line-height: 1.7;
     letter-spacing: 0.18em;
+  }
+
+  .hero-grid {
+    gap: 36px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.9rem, 13.8vw, 4.55rem);
+    line-height: 0.96;
+    letter-spacing: -0.055em;
+  }
+
+  .hero h1 .line {
+    margin-bottom: 10px;
+  }
+
+  .hero h1 .cn-title {
+    max-width: 13em;
+    margin-top: 24px;
+    font-size: clamp(1.32rem, 7vw, 2rem);
+    line-height: 1.38;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-desc {
+    margin-bottom: 28px;
+    font-size: 0.9rem;
+    line-height: 1.95;
   }
 
   .feat-grid,
@@ -1046,12 +1141,152 @@ footer {
   }
 
   .hero-stats {
-    flex-wrap: wrap;
-    gap: 24px;
+    display: grid;
+    grid-auto-columns: minmax(130px, 1fr);
+    grid-auto-flow: column;
+    gap: 10px;
+    padding-top: 20px;
+    margin-top: 36px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .hero-stats::-webkit-scrollbar {
+    display: none;
+  }
+
+  .stat-item {
+    min-width: 130px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--line);
+    scroll-snap-align: start;
+  }
+
+  .stat-item .stat-num {
+    font-size: 1.55rem;
+  }
+
+  .stat-item .stat-label {
+    font-size: 0.58rem;
+    line-height: 1.5;
+  }
+
+  .marquee {
+    padding: 14px 0;
+  }
+
+  .marquee-track {
+    gap: 36px;
+    animation-duration: 22s;
+  }
+
+  .sec-label {
+    align-items: flex-start;
+    line-height: 1.6;
+    letter-spacing: 0.2em;
+  }
+
+  .sec-title {
+    font-size: clamp(2rem, 10vw, 2.7rem);
+  }
+
+  .sec-title-cn {
+    margin-bottom: 34px;
+    font-size: 1rem;
+  }
+
+  .about-right {
+    gap: 14px;
+  }
+
+  .about-card {
+    padding: 22px;
+  }
+
+  .ac-desc {
+    padding-left: 0;
+  }
+
+  .feat-cell {
+    min-height: 260px;
+    padding: 34px 24px;
+  }
+
+  .feat-num {
+    margin-bottom: 60px;
+    font-size: 3.8rem;
+  }
+
+  .how-step {
+    padding: 24px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.012);
+    border: 1px solid var(--line);
+  }
+
+  .how-dot {
+    margin: 0 0 18px;
+  }
+
+  .demo-area {
+    margin-top: 34px;
+  }
+
+  .demo-topbar {
+    align-items: flex-start;
+    padding: 12px 14px;
+  }
+
+  .demo-topbar span {
+    display: block;
+    min-width: 0;
+    margin-left: 4px;
+    overflow: hidden;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .demo-body {
+    min-height: 0;
+    padding: 22px 16px;
+  }
+
+  .demo-chat {
+    gap: 16px;
+  }
+
+  .chat-msg,
+  .chat-msg.from-right {
+    flex-direction: column;
+    gap: 8px;
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .chat-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .chat-bubble {
+    padding: 14px 16px;
+    font-size: 0.78rem;
+  }
+
+  .philo-quote br,
+  .cta-sub br {
+    display: none;
   }
 
   .philo {
     padding: 100px 24px;
+  }
+
+  .philo-quote {
+    text-align: left;
   }
 
   .cta-section {
@@ -1067,16 +1302,25 @@ footer {
   }
 
   .scroll-hint {
-    left: 24px;
+    position: static;
+    margin-top: 36px;
   }
 
   .hero-actions {
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    align-items: stretch;
   }
 
-  .chat-msg {
-    max-width: 100%;
+  .btn-primary,
+  .btn-ghost {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--line);
   }
 
   .footer-bottom {
@@ -1088,5 +1332,75 @@ footer {
   .footer-bottom a {
     margin-right: 20px;
     margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0 18px;
+  }
+
+  .logo-mark {
+    width: 24px;
+    height: 24px;
+  }
+
+  .logo-text {
+    font-size: 0.9rem;
+    letter-spacing: 0.16em;
+  }
+
+  .btn-enter {
+    max-width: 96px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sec,
+  .hero,
+  footer {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.65rem, 12.8vw, 3.55rem);
+    letter-spacing: -0.045em;
+  }
+
+  .hero h1 .cn-title {
+    font-size: clamp(1.16rem, 6.2vw, 1.55rem);
+  }
+
+  .hero-desc,
+  .about-left p {
+    font-size: 0.84rem;
+  }
+
+  .mobile-dock {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .mobile-dock a {
+    min-height: 46px;
+    font-size: 0.62rem;
+  }
+
+  .cta-box {
+    padding: 40px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }
