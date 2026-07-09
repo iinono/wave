@@ -4,6 +4,7 @@ import './App.css'
 const navItems = [
   ['#about', '关于平台'],
   ['#features', '核心能力'],
+  ['#spiral', '螺旋星球'],
   ['#how', '工作流程'],
   ['#demo', '演示'],
 ]
@@ -19,6 +20,7 @@ const marqueeItems = [
   '项目共享',
   '需求理解',
   '智能匹配',
+  '螺旋星球',
   '知识传递',
   '多模态交互',
   '人类意图',
@@ -39,6 +41,19 @@ const features = [
   ['协作画布', '可视化的多 Agent 工作流编辑器，拖拽组合不同 Agent 能力，实时预览协作效果。'],
   ['知识蒸馏网络', 'Agent 在项目协作中积累的经验被自动抽取为可复用的知识模块，反哺整个生态。'],
   ['人类反馈回路', '用户对 Agent 输出的评价和修正被系统化记录，持续优化 Agent 对人类需求的理解。'],
+]
+
+const spiralPoints = [
+  ['项目节点', '把每个作品拆成能力、接口、上下文和适用场景。'],
+  ['Agent 轨道', '让不同 Agent 按能力距离分布在同一组协作轨道上。'],
+  ['需求引力', '人类目标进入网络后，自动牵引最相关的项目与 Agent。'],
+]
+
+const spiralMetrics = [
+  ['NODE MAP', '项目图谱'],
+  ['AGENT ROUTING', '协作路由'],
+  ['INTENT FIELD', '意图场'],
+  ['LIVE TOPOLOGY', '实时拓扑'],
 ]
 
 const steps = [
@@ -132,7 +147,7 @@ function WaveCanvas() {
 
     function resize() {
       const ratio = window.devicePixelRatio || 1
-      width = window.innerWidth
+      width = document.documentElement.clientWidth
       height = window.innerHeight
       canvas.width = width * ratio
       canvas.height = height * ratio
@@ -451,10 +466,71 @@ function Features() {
   )
 }
 
+function SpiralNetwork() {
+  return (
+    <section className="sec spiral-section" id="spiral">
+      <SectionLabel>003 - 旗舰项目</SectionLabel>
+      <div className="spiral-grid">
+        <div className="spiral-copy">
+          <div className="spiral-kicker rv">Spherical Spiral Network / 螺旋星球</div>
+          <h2 className="sec-title rv rv-d1">把项目、Agent 与人类需求映射到同一个球面网络</h2>
+          <p className="sec-title-cn rv rv-d2">
+            螺旋星球可以作为 Visionnono 的核心展示项目：它不是单纯的视觉特效，
+            而是一层协作地图。每个项目、Agent 和需求都会成为球面螺旋上的节点，
+            节点距离代表语义接近度，轨道变化代表协作机会。
+          </p>
+          <div className="spiral-points rv rv-d3">
+            {spiralPoints.map(([title, description]) => (
+              <article className="spiral-point" key={title}>
+                <span />
+                <div>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <a href="#demo" className="btn-ghost spiral-link rv rv-d4">
+            查看协作演示 →
+          </a>
+        </div>
+
+        <div className="spiral-visual rv rv-d2" aria-label="Spherical Spiral Network visualization">
+          <div className="spiral-orb">
+            <div className="spiral-axis" />
+            <div className="spiral-core">
+              <span>VISION</span>
+            </div>
+            <div className="orbit orbit-1" />
+            <div className="orbit orbit-2" />
+            <div className="orbit orbit-3" />
+            <div className="orbit orbit-4" />
+            <span className="spiral-node node-1">AI</span>
+            <span className="spiral-node node-2">API</span>
+            <span className="spiral-node node-3">UX</span>
+            <span className="spiral-node node-4">DATA</span>
+            <span className="spiral-node node-5">BOT</span>
+            <span className="spiral-node node-6">HUMAN</span>
+          </div>
+
+          <div className="spiral-metrics">
+            {spiralMetrics.map(([value, label]) => (
+              <div className="spiral-metric" key={value}>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function HowItWorks() {
   return (
     <section className="sec" id="how">
-      <SectionLabel>003 - 工作流程</SectionLabel>
+      <SectionLabel>004 - 工作流程</SectionLabel>
       <h2 className="sec-title rv">How It Works</h2>
       <p className="sec-title-cn rv rv-d1">四步开启 Agent 协作之旅</p>
 
@@ -475,7 +551,7 @@ function HowItWorks() {
 function Demo() {
   return (
     <section className="sec" id="demo">
-      <SectionLabel>004 - 交互演示</SectionLabel>
+      <SectionLabel>005 - 交互演示</SectionLabel>
       <h2 className="sec-title rv">Agent Collaboration</h2>
       <p className="sec-title-cn rv rv-d1">多 Agent 实时协作对话示例</p>
 
@@ -592,6 +668,7 @@ function App() {
         <Marquee />
         <About />
         <Features />
+        <SpiralNetwork />
         <HowItWorks />
         <Demo />
         <Philosophy />

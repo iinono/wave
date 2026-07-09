@@ -16,6 +16,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -73,11 +74,12 @@ header {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: auto;
   height: 72px;
   padding: 0 56px;
   background: rgba(4, 4, 4, 0.55);
@@ -666,6 +668,278 @@ nav a:focus-visible {
   opacity: 1;
 }
 
+.spiral-section {
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.012), transparent),
+    radial-gradient(circle at 72% 46%, rgba(255, 255, 255, 0.045), transparent 34%);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.spiral-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+  gap: 72px;
+  align-items: center;
+}
+
+.spiral-copy {
+  max-width: 660px;
+}
+
+.spiral-kicker {
+  margin-bottom: 20px;
+  color: var(--t2);
+  font-family: var(--font-m);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.spiral-section .sec-title-cn {
+  max-width: 620px;
+  margin-bottom: 32px;
+}
+
+.spiral-points {
+  display: grid;
+  gap: 1px;
+  margin: 34px 0 28px;
+  background: var(--line);
+}
+
+.spiral-point {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 18px;
+  padding: 22px 24px;
+  background: rgba(4, 4, 4, 0.88);
+}
+
+.spiral-point > span {
+  width: 12px;
+  height: 12px;
+  margin-top: 6px;
+  border: 1px solid var(--t2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.025);
+}
+
+.spiral-point h3 {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.spiral-point p {
+  color: var(--t2);
+  font-size: 0.76rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.spiral-link {
+  display: inline-flex;
+  width: auto;
+  border: 1px solid var(--line);
+}
+
+.spiral-visual {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+}
+
+.spiral-orb {
+  position: relative;
+  aspect-ratio: 1;
+  width: min(100%, 560px);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--line-h);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 9%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.025), transparent 48%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 0 1px,
+      transparent 1px 34px
+    );
+  box-shadow:
+    inset 0 0 90px rgba(255, 255, 255, 0.04),
+    0 40px 120px rgba(0, 0, 0, 0.45);
+}
+
+.spiral-orb::before,
+.spiral-orb::after {
+  content: '';
+  position: absolute;
+  inset: 11%;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+}
+
+.spiral-orb::after {
+  inset: 23%;
+  opacity: 0.7;
+}
+
+.spiral-axis {
+  position: absolute;
+  top: 9%;
+  bottom: 9%;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.24), transparent);
+  transform: translateX(-50%) rotate(14deg);
+}
+
+.spiral-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 86px;
+  height: 86px;
+  color: #000;
+  font-family: var(--font-m);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  background: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(var(--orbit-rotate));
+}
+
+.orbit::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -3px;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.orbit-1 {
+  --orbit-rotate: -64deg;
+  width: 78%;
+  height: 22%;
+}
+
+.orbit-2 {
+  --orbit-rotate: -32deg;
+  width: 86%;
+  height: 34%;
+  opacity: 0.72;
+}
+
+.orbit-3 {
+  --orbit-rotate: 12deg;
+  width: 84%;
+  height: 50%;
+  opacity: 0.58;
+}
+
+.orbit-4 {
+  --orbit-rotate: 42deg;
+  width: 72%;
+  height: 66%;
+  opacity: 0.42;
+}
+
+.spiral-node {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  min-width: 48px;
+  height: 28px;
+  padding: 0 10px;
+  color: var(--t1);
+  font-family: var(--font-m);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  background: rgba(4, 4, 4, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+}
+
+.node-1 {
+  top: 20%;
+  left: 54%;
+}
+
+.node-2 {
+  top: 32%;
+  left: 16%;
+}
+
+.node-3 {
+  top: 46%;
+  right: 11%;
+}
+
+.node-4 {
+  right: 24%;
+  bottom: 20%;
+}
+
+.node-5 {
+  bottom: 30%;
+  left: 17%;
+}
+
+.node-6 {
+  bottom: 11%;
+  left: 43%;
+}
+
+.spiral-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+
+.spiral-metric {
+  min-width: 0;
+  padding: 18px 16px;
+  background: rgba(4, 4, 4, 0.88);
+}
+
+.spiral-metric strong,
+.spiral-metric span {
+  display: block;
+}
+
+.spiral-metric strong {
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+  font-family: var(--font-m);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+.spiral-metric span {
+  color: var(--t3);
+  font-size: 0.68rem;
+}
+
 .how-grid {
   position: relative;
   display: grid;
@@ -986,7 +1260,8 @@ footer {
 
 @media (max-width: 1024px) {
   .hero-grid,
-  .about-grid {
+  .about-grid,
+  .spiral-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1002,6 +1277,14 @@ footer {
 
   .how-grid::before {
     display: none;
+  }
+
+  .spiral-copy {
+    max-width: none;
+  }
+
+  .spiral-orb {
+    width: min(100%, 520px);
   }
 }
 
@@ -1019,6 +1302,8 @@ footer {
   }
 
   header {
+    right: auto;
+    width: 100dvw;
     height: 64px;
     padding: 0 24px;
   }
@@ -1044,17 +1329,20 @@ footer {
 
   .mobile-dock {
     position: fixed;
-    right: 14px;
+    right: auto;
     bottom: 14px;
-    left: 14px;
+    left: 50%;
     z-index: 1001;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: calc(100dvw - 28px);
+    max-width: 100%;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 1px;
     padding: 6px;
     background: rgba(8, 8, 8, 0.84);
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(18px) saturate(1.2);
+    transform: translateX(-50%);
   }
 
   .mobile-dock a {
@@ -1065,7 +1353,7 @@ footer {
     justify-content: center;
     min-height: 48px;
     color: var(--t2);
-    font-size: 0.68rem;
+    font-size: 0.58rem;
     letter-spacing: 0;
     background: rgba(255, 255, 255, 0.025);
   }
@@ -1136,7 +1424,8 @@ footer {
 
   .feat-grid,
   .how-grid,
-  .footer-grid {
+  .footer-grid,
+  .spiral-metrics {
     grid-template-columns: 1fr;
   }
 
@@ -1217,6 +1506,63 @@ footer {
   .feat-num {
     margin-bottom: 60px;
     font-size: 3.8rem;
+  }
+
+  .spiral-section {
+    background:
+      linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.012), transparent),
+      radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.04), transparent 45%);
+  }
+
+  .spiral-grid {
+    gap: 38px;
+  }
+
+  .spiral-kicker {
+    font-size: 0.58rem;
+    line-height: 1.7;
+    letter-spacing: 0.12em;
+  }
+
+  .spiral-points {
+    margin-top: 28px;
+  }
+
+  .spiral-point {
+    grid-template-columns: 24px 1fr;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .spiral-point > span {
+    width: 10px;
+    height: 10px;
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.025);
+  }
+
+  .spiral-orb {
+    width: min(100%, 420px);
+  }
+
+  .spiral-core {
+    width: 72px;
+    height: 72px;
+    font-size: 0.56rem;
+  }
+
+  .spiral-node {
+    min-width: 42px;
+    height: 24px;
+    padding: 0 8px;
+    font-size: 0.5rem;
+  }
+
+  .spiral-metrics {
+    gap: 1px;
+  }
+
+  .spiral-metric {
+    padding: 16px;
   }
 
   .how-step {
@@ -1379,14 +1725,33 @@ footer {
   }
 
   .mobile-dock {
-    right: 10px;
     bottom: 10px;
-    left: 10px;
+    width: calc(100dvw - 20px);
   }
 
   .mobile-dock a {
     min-height: 46px;
-    font-size: 0.62rem;
+    padding: 0 2px;
+    font-size: 0.52rem;
+  }
+
+  .mobile-dock a span {
+    font-size: 0.46rem;
+  }
+
+  .spiral-orb {
+    width: min(100%, 340px);
+  }
+
+  .spiral-node {
+    min-width: 36px;
+    height: 22px;
+    padding: 0 6px;
+    font-size: 0.45rem;
+  }
+
+  .node-6 {
+    left: 38%;
   }
 
   .cta-box {
